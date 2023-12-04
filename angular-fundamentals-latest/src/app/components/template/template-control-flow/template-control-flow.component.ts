@@ -1,16 +1,17 @@
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Observable, delay, of } from 'rxjs';
 
 @Component({
   selector: 'app-template-control-flow',
   standalone: true,
-  imports: [AsyncPipe, NgIf, NgFor],
+  imports: [CommonModule],
   templateUrl: './template-control-flow.component.html',
   styleUrl: './template-control-flow.component.scss',
 })
 export class TemplateControlFlowComponent {
   public isTrue = true;
+  public switchCondition = 'A';
 
   public items = [{ name: 'Pedro Campos' }];
   public loadingData$: Observable<string[]> = of([
