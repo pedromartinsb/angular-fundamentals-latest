@@ -1,0 +1,44 @@
+<h2>Template</h2>
+<h3>Text Interpolation</h3>
+{{ name }}
+
+<hr />
+
+<h2>Property binding</h2>
+<!-- <element [property]='value'></element> -->
+<button [disabled]="isDisabled">Button</button>
+
+<hr />
+
+<h2>Attribute binding</h2>
+<!-- <element [attr.attribute-you-are-targeting]='value'></element> -->
+<p [attr.aria-label]="name">Pedro Campos</p>
+
+<hr />
+
+<h2>Class and Style binding</h2>
+<p [class.background-red]="age >= 32" [class.background-blue]="age < 32">{{ name }}</p>
+
+<hr />
+
+<h2>Event Binding</h2>
+<!-- <element (TargetEventName)='TemplateStatement'></element> -->
+<button (click)="sum()">+</button>
+<button (click)="sub()">-</button>
+<input (keydown.shift.t)="onKeyDown($event)">
+<div
+  style="background: red; width: 300px; height: 300px; margin-top: 10px"
+  (mousemove)="onMouseMove($event)"
+></div>
+
+<hr />
+
+<h2>Two-way binding</h2>
+<!-- <input [(ngModel)]="name" /> -->
+
+<hr />
+
+<h3>Diretivas de atributo</h3>
+<div>Classes condicionais</div>
+
+<div>Estilo dinâmico</div>
