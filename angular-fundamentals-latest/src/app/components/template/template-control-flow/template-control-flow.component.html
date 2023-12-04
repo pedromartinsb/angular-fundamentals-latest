@@ -2,7 +2,6 @@
 <h3>IF</h3>
 
 <!-- Nova Forma -->
-
 @if (isTrue) {
   <p>Pedro</p>
   <p>Campos</p>
@@ -11,10 +10,103 @@
 }
 
 <!-- Antiga Forma -->
-
 <ng-container *ngIf="isTrue; else isFalse">
   <p>Pedro</p>
   <p>Campos</p>
 </ng-container>
 <ng-template #isFalse> Não está correto </ng-template>
 
+<hr />
+
+<h2>Control Flow</h2>
+<h3>FOR</h3>
+
+<!-- Nova Forma -->
+@if(loadingData$ | async; as data) {
+  <ul>
+    @for(item of data; track item) {
+      <li>{{ item }}</li>
+    }
+  </ul>
+} @else {
+  <p>carregando...</p>
+}
+
+<!-- Antiga Forma -->
+<ng-container *ngIf="loadingData$| async as data; else loading">
+  <ul>
+    <ng-container *ngFor="let item of data; trackBy: trackByFn">
+      <li>{{ item }}</li>
+    </ng-container>
+  </ul>
+</ng-container>
+<ng-template #loading>
+  <p>carregando...</p>
+</ng-template>
+
+<!-- Nova Forma -->
+@for (
+  item of items; track item.name;
+  let i = $index;
+  let c = $count;
+  let f = $first;
+  let l = $last;
+  let e = $even;
+  let o = $odd;
+) {
+  <p>{{ item.name }}</p>
+  <p>index - {{ i }}</p>
+  <p>count - {{ c }}</p>
+  <p>first - {{ f }}</p>
+  <p>last - {{ l }}</p>
+  <p>even - {{ e }}</p>
+  <p>odd - {{ o }}</p>
+}
+
+<!-- Antiga Forma -->
+<ng-container
+  *ngFor="
+    let item of items;
+    let i = index;
+    let c = count;
+    let f = first;
+    let l = last;
+    let e = even;
+    let o = odd;
+    trackBy: trackByFn
+  "
+>
+  <p>{{ item.name }}</p>
+  <p>index - {{ i }}</p>
+  <p>count - {{ c }}</p>
+  <p>first - {{ f }}</p>
+  <p>last - {{ l }}</p>
+  <p>even - {{ e }}</p>
+  <p>odd - {{ o }}</p>
+</ng-container>
+
+
+<!-- Nova Forma -->
+<ul>
+  @for (item of items; track item.name) {
+    <li>{{ item.name }}</li>
+  } @empty {
+    <li>Não contém valores</li>
+  }
+</ul>
+
+
+<!-- Antiga Forma -->
+<ul>
+  <ng-container *ngIf="items.length === 0; else itemsExist">
+    <li>Não contém valores</li>
+  </ng-container>
+
+  <ng-template #itemsExist>
+    <ng-container *ngFor="let item of items">
+      <li>
+        {{ item.name }}
+      </li>
+    </ng-container>
+  </ng-template>
+</ul>
